@@ -1,2 +1,2 @@
 # LeetCode  
-![](https://leetcard.jacoblin.cool/Juned Pathanext=heatmap)
+![](https://leetcard.jacoblin.cool/Juned Pathan?ext=heatmap)
