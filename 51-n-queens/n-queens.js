@@ -1,39 +1,48 @@
-function solveNQueens(n) {
-    const results = [];
+/**
+ * @param {number} n
+ * @return {string[][]}
+ */
+var solveNQueens = function(n) {
+    const res = [];
     const board = new Array(n).fill(0).map(() => new Array(n).fill('.'));
+    
+    function isSafe(row, col){
+        //Horizontal  
+        for(let j=0; j<n; j++){
+            if(board[row][j] == 'Q') return false;
+        }
 
-    // Boolean arrays for column and diagonals
-    const cols = new Array(n).fill(false);
-    const diag1 = new Array(2 * n - 1).fill(false); // row + col
-    const diag2 = new Array(2 * n - 1).fill(false); // row - col + (n - 1)
+        //Vertical
+        for(let i=0; i<n; i++){
+            if(board[i][col] == 'Q') return false;
+        }
+
+        //left diagonal
+        for(let i=row, j=col; i>=0 && j>=0; i--, j--){
+            if(board[i][j] === "Q") return false;
+        }
+
+        //right diagonal
+        for(let i=row, j=col; i>=0 && j<n; i--, j++){
+            if(board[i][j] === "Q") return false;
+        }
+        return true;
+    }
 
     function backtrack(row) {
-        if (row === n) {
-            results.push(board.map(row => row.join("")));
+        if(row === n){
+            res.push(board.map(row => row.join("")));
             return;
         }
 
-        for (let col = 0; col < n; col++) {
-            if (cols[col] || diag1[row + col] || diag2[row - col + (n - 1)]) {
-                continue; // Skip if under attack
+        for(let col=0; col<n; col++){
+            if(isSafe(row, col)){
+                board[row][col] = "Q";
+                backtrack(row+1);
+                board[row][col] = ".";
             }
-
-            // Place queen
-            board[row][col] = 'Q';
-            cols[col] = diag1[row + col] = diag2[row - col + (n - 1)] = true;
-
-            // Move to next row
-            backtrack(row + 1);
-
-            // Remove queen (backtracking)
-            board[row][col] = '.';
-            cols[col] = diag1[row + col] = diag2[row - col + (n - 1)] = false;
         }
     }
-
     backtrack(0);
-    return results;
-}
-
-// Example usage
-console.log(solveNQueens(4));
+    return res;
+};
