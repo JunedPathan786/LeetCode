@@ -26,7 +26,7 @@ var nextPermutation = function(nums) {
     }
 
     let i=pivot+1 , j=n-1;
-    while(i <= j){
+    while(i < j){
         [nums[i], nums[j]] = [nums[j], nums[i]];
         i++;
         j--;
