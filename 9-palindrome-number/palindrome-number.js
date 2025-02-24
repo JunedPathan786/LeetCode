@@ -3,24 +3,14 @@
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    if(x < 0) return false;
+    if (x < 0) return false; // Negative numbers are not palindromes
 
-    let n = x;
+    let reverseNum = 0, n = x;
 
-    let reverseNum = 0;
-
-    while(n > 0){
-
-        let d = n%10;
-
-        reverseNum = reverseNum*10 + d;
-
-        n= Math.floor(n/10);
+    while (n > 0) {
+        reverseNum = reverseNum * 10 + (n % 10);
+        n = Math.floor(n / 10);
     }
 
-    if(reverseNum == x){
-        return true;
-    }else{
-        return false;
-    }
+    return reverseNum === x;
 };
