@@ -32,9 +32,9 @@ var addTwoNumbers = function(l1, l2) {
         let sum = val1 + val2 + carry; 
 
         carry = Math.floor(sum / 10);
-        d = sum % 10;
+        let digit = sum % 10;
 
-        let temp = new ListNode(d);
+        let temp = new ListNode(digit);
 
         dummy.next = temp;
         dummy = dummy.next;
@@ -42,12 +42,11 @@ var addTwoNumbers = function(l1, l2) {
         ptr1 = ptr1!=null ? ptr1.next : null;
         ptr2 = ptr2!=null ? ptr2.next : null;
     }
+
     if(carry > 0){
-        temp = new ListNode(carry);
-        dummy.next = temp;
-        dummy = dummy.next;  
+       dummy.next = new ListNode(carry);
     }
-    
+
     return ans.next;
 
 };
