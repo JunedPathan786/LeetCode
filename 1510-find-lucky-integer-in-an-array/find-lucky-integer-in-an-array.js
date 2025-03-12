@@ -3,24 +3,19 @@
  * @return {number}
  */
 var findLucky = function(arr) {
-        const hm = new Map();
+    const hm = new Map();
 
-        for (let i = 0; i < arr.length; i++) {
-            const ele = arr[i];
+    for (const num of arr) {
+        hm.set(num, (hm.get(num) || 0) + 1);
+    }
 
-            if (hm.has(ele)) {
-                hm.set(ele, hm.get(ele) + 1);
-            } else {
-                hm.set(ele, 1);
-            }
+    let ans = -1;
+  
+    for (const [key, value] of hm) {
+        if (key === value) {
+            ans = Math.max(ans, key);
         }
+    }
 
-        let ans = -1;
-        for (let key of hm.keys()) {
-            if (hm.get(key) === key) {
-                ans = Math.max(ans, key);
-            }
-        }
-
-        return ans;
+    return ans;
 };
