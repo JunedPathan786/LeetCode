@@ -12,9 +12,9 @@ var minAddToMakeValid = function(s) {
             open++
         }else{
              if (open > 0) {
-                open--; // matches with an opening
+                open--; 
             } else {
-                count++; // need to insert one '('
+                count++; 
             }
         }
     }
