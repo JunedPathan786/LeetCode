@@ -3,23 +3,20 @@
  * @param {string} t
  * @return {boolean}
  */
-function isAnagram(s, t) {
+function isAnagram(s, t){
     if (s.length !== t.length) return false;
 
-    const freqMap = {};
+    const map = new Map();
 
-    // Count frequency of characters in s
     for (let char of s) {
-        freqMap[char] = (freqMap[char] || 0) + 1;
+        map.set(char, (map.get(char) || 0) + 1);
     }
 
-    // Subtract frequency using characters in t
     for (let char of t) {
-        if (!freqMap[char]) {
-            return false;
-        }
-        freqMap[char]--;
+        if (!map.has(char)) return false;
+        map.set(char, map.get(char) - 1);
+        if (map.get(char) === 0) map.delete(char);
     }
 
-    return true;
+    return map.size === 0;
 }
