@@ -11,7 +11,7 @@ var diagonalSum = function(mat) {
         for(let j=0; j<n; j++){
 
             if(i==j || i+j == n-1){
-                sum += Math.floor(mat[i][j])
+                sum += mat[i][j]
             }  
         }
     }
