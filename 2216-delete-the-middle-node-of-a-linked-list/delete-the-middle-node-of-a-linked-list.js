@@ -11,20 +11,19 @@
  */
 var deleteMiddle = function(head) {
     if (head == null || head.next == null) {
-        return null; // Agar sirf ek node hai, to use hata dena hai
+        return null; 
     }
 
     let fast = head;
     let slow = head;
-    let pre = null; // Pre ko null se shuru karo
+    let pre = null; 
 
     while (fast != null && fast.next != null) {
         fast = fast.next.next;
-        pre = slow;         // slow ke pehle waale node ko yaad rakho
+        pre = slow; 
         slow = slow.next;
     }
 
-    // Middle node ko hata do
     pre.next = slow.next;
 
     return head;
