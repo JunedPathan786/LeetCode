@@ -11,19 +11,18 @@
  * @param {number[]} nums
  * @return {TreeNode}
  */
-function helper(arr, start, end) {
-    if (start > end) return null;
-
-    let mid = Math.floor((start + end) / 2);
-
-    let root = new TreeNode(arr[mid]);
-
-    root.left = helper(arr, start, mid - 1);
-    root.right = helper(arr, mid + 1, end);
-
-    return root;
-}
-
 var sortedArrayToBST = function(nums) {
-    return helper(nums, 0, nums.length - 1);
+    const buildBST = (left, right) => {
+        if (left > right) return null;
+
+        const mid = Math.floor((left + right) / 2);
+        const node = new TreeNode(nums[mid]);
+
+        node.left = buildBST(left, mid - 1);
+        node.right = buildBST(mid + 1, right);
+
+        return node;
+    };
+
+    return buildBST(0, nums.length - 1);
 };
