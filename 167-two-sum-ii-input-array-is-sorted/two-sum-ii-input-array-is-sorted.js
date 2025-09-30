@@ -4,24 +4,23 @@
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-    let ans = new Array(2);
+    let n = numbers.length;
 
-    let start = 0;
-    let end = numbers.length-1;
+    let i = 0;
+    let j = n - 1
 
-    while(start < end ){
-        let sum = numbers[start] + numbers[end];
+    while(i <j){
+        let sum = numbers[i] + numbers[j]
 
-        if(sum == target){
-            ans[0] = start + 1;
-            ans[1] = end + 1;
-
-            return ans;
-        }else if(sum > target){
-            end--
-        }else{
-            start++;
+        if(sum < target){
+            i++
+        }
+        else if(sum > target){
+            j--
+        }
+        else{
+            return [i+1, j+1]
         }
     }
-    return ans;
+    return []
 };
