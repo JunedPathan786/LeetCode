@@ -1,8 +1,7 @@
-SELECT today.id
-FROM Weather today
-WHERE EXISTS (
-    SELECT 1
-    FROM Weather yesterday
-    WHERE yesterday.recordDate = DATE_SUB(today.recordDate, INTERVAL 1 DAY)
-    AND yesterday.temperature < today.temperature
-);
+SELECT today.id 
+FROM Weather as today
+where EXISTS
+(SELECT 1 FROM Weather as yesterday
+WHERE yesterday.temperature < today.temperature
+AND 
+DATEDIFF(today.recordDate, yesterday.recordDate) = 1)
