@@ -4,26 +4,20 @@
  */
 var productExceptSelf = function(nums) {
     let n = nums.length;
-    let right = new Array(n).fill(1);
 
-    let prod = 1;
+    let result = new Array(n).fill(1);
 
-    for(let i=n-1; i>=0; i--){
-        prod = prod * nums[i];
-        right[i] = prod;
+    let pre = 1 , post = 1;
+
+    for(let i = 0; i < n ; i++){
+        result[i] = pre;
+        pre = nums[i] * pre;
     }
 
-    let ans = new Array(n).fill(1);
-
-    let left = 1;
-
-    for(let i=0; i<n-1; i++){
-        let val = left *  right[i+1];
-        ans[i] = val;
-        left =  left * nums[i];
+    for(let i = n - 1; i >= 0 ; i--){
+        result[i] = result[i] * post;
+        post = nums[i] * post
     }
 
-    ans[n-1] = left;
-
-    return ans;
+    return result
 };
