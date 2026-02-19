@@ -2,22 +2,23 @@
  * @param {string} s
  * @return {boolean}
  */
-function isPalindrome(s) {
-    const n = s.length;
-    let cleaned = "";
+var isPalindrome = function(s) {
+    let str = s.match(/[A-Z0-9]/gi)
 
-    for (let i = 0; i < n; i++) {
-        const c = s[i].toLowerCase();
-        if (isAlphaNumeric(c)) cleaned += c;
+    if(!str || !str.length) return true
+
+    let left = 0
+    let right = str.length - 1
+
+    while(left < right){
+        let left_alpha = str[left].toLowerCase()
+        let right_alpha = str[right].toLowerCase()
+
+        if(left_alpha != right_alpha){
+            return false
+        }
+        left++
+        right--
     }
-
-    for (let i = 0, j = cleaned.length - 1; i < j; i++, j--) {
-        if (cleaned[i] !== cleaned[j]) return false;
-    }
-
-    return true;
-}
-
-function isAlphaNumeric(char) {
-    return /^[a-z0-9]$/i.test(char);
-}
+    return true
+};
