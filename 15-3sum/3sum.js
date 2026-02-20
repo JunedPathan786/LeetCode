@@ -3,34 +3,36 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    // Sorting the array.
-    nums.sort((a,b) => a-b); 
-    let res = [];
-    const n = nums.length;
+    nums.sort((a,b)=>a-b)
+    let result = []
 
-    for(let i = 0; i < n - 2; i++){
-        //Skip the Duplicates 
-        if(i > 0 && nums[i] === nums[i-1]) continue;
+    for(let i=0; i<nums.length && nums[i]<= 0; i++){
         
-        let left = i + 1, right = n - 1 ;
+        if(i==0 || nums[i] != nums[i-1]){
+            twoSum(nums, i , result)
+        }
+    }
+    return result
 
-        while(left < right){
-            const sum = nums[i] + nums[left] + nums[right];
+    function twoSum(nums, i , result){
+        let left = i + 1
+        let right = nums.length - 1
 
-            if(sum === 0){
-                res.push([nums[i], nums[left], nums[right]]);
+        while(left < right) {
+            let sum = nums[i] + nums[left] + nums[right]
 
-                //Skip duplicate elements 
-                while (left < right && nums[left] === nums[left +1 ]) left++;
-                while (left < i && nums[right] === nums[right - 1 ]) right--;
-                left++;
-                right--;
-            }else if (sum < 0){
-                left++;
+            if(sum  < 0){
+                left++
+            }else if (sum > 0){
+                right--
             }else{
-                right--;
+                result.push([nums[i], nums[left++], nums[right--]])
+
+                while(left < right && nums[left] == nums[left-1]){
+                    left++
+                }
             }
         }
-    } 
-    return res;  
+    }
 };
+
