@@ -4,23 +4,17 @@
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-    let n = numbers.length;
+    let left = 0 ; 
+    let right = numbers.length - 1
 
-    let i = 0;
-    let j = n - 1
-
-    while(i <j){
-        let sum = numbers[i] + numbers[j]
-
-        if(sum < target){
-            i++
-        }
-        else if(sum > target){
-            j--
-        }
-        else{
-            return [i+1, j+1]
+    while(left < right){
+        if(numbers[left] + numbers[right] > target){
+            right--
+        }else if (numbers[left] + numbers[right] < target){
+            left++
+        }else{
+            return [left+1, right+1]
         }
     }
-    return []
+    return null
 };
