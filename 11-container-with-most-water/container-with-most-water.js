@@ -3,18 +3,22 @@
  * @return {number}
  */
 var maxArea = function(height) {
-   let maxWater = 0; //ans
-   let n = height.length;
-   let lp=0; rp=n-1;
+    let max = 0
+    let left = 0;
+    let right = height.length - 1
 
-   while(lp < rp){
-    let w = rp-lp;
-    let ht = Math.min(height[lp], height[rp]);
-    let currWater = w * ht;
-    maxWater = Math.max(maxWater, currWater);
+    while(left < right){
+        let width = right - left
+        let area = Math.min(height[left],height[right]) * width
 
-    height[lp] < height[rp] ? lp++ : rp--;
-   }
+        max = Math.max(area, max)
 
-    return maxWater;
+        if(height[left] <= height[right]){
+            left++
+        }else{
+            right--
+        }
+    }
+
+    return max
 };
