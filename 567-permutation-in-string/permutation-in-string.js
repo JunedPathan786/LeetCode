@@ -25,7 +25,7 @@ var checkInclusion = function(s1, s2) {
     }
 
     if(matches(s1Map, s2Map)) return true
-    
+
     for(let i = s1.length ; i < s2.length; i++){
         s2Map[s2.charCodeAt(i) - 97]++
 
