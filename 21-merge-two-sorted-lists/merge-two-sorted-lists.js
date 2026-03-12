@@ -14,8 +14,8 @@ var mergeTwoLists = function(list1, list2) {
     let dummy = [1]
     let merge = dummy
 
-    while(list1 != null & list2 !=null){
-        if(list1.val <= list2.val){
+    while(list1 != null & list2 != null){
+        if(list1.val < list2.val){
             merge.next = list1
             list1 = list1.next
         }else{
