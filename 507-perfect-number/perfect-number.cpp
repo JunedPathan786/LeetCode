@@ -1,6 +1,8 @@
 class Solution {
 public:
     bool checkPerfectNumber(int num) {
+
+        if(num <= 1) return false;
         
         int sum = 0;
 
