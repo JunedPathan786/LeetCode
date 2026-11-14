@@ -21,8 +21,8 @@ public:
        int n = nums.size();
        int sum = 0;
 
-       for(int i=0; i<n; i++){
-        sum += nums[i];
+       for(int num : nums){
+        sum += num;
        } 
         if(sum % 2 != 0) return false;
         return subsetSum(nums, sum/2, n);
