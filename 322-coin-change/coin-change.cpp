@@ -1,23 +1,22 @@
 class Solution {
 public:
+    int dp[10010];
+    int calculateCoin(vector<int>& coins, int amount){
+        if(amount == 0 ) return 0;
+
+        if(dp[amount] != -1) return dp[amount];
+
+        int ans = INT_MAX;
+
+        for(int coin : coins){
+            if(amount - coin >= 0)
+                ans = min(ans + 0LL, calculateCoin(coins, amount - coin) + 1LL);
+        }
+        return dp[amount] = ans;
+    }
     int coinChange(vector<int>& coins, int amount) {
-        int n = coins.size();
-
-        vector<vector<int>> dp(n+1, vector<int>(amount+1, INT_MAX-1));
-
-        for(int i=0; i<=n; i++){
-            dp[i][0] = 0;
-        }
-
-        for(int i=1; i<=n; i++){
-            for(int j=1; j<=amount; j++){
-                if(coins[i-1] <= j){
-                    dp[i][j] = min(dp[i][j-coins[i-1]]+1, dp[i-1][j]);
-                }else{
-                    dp[i][j] = dp[i-1][j];
-                }
-            }
-        }
-        return dp[n][amount] == INT_MAX - 1 ? -1 : dp[n][amount];
+        memset(dp, -1, sizeof(dp));
+        int ans = calculateCoin(coins, amount);
+        return ans == INT_MAX ? -1 : ans;
     }
 };
